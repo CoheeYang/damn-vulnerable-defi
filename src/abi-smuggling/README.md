@@ -7,3 +7,7 @@ The contract has an embedded generic authorization scheme, only allowing known a
 The dev team has received a responsible disclosure saying all funds can be stolen.
 
 Rescue all funds from the vault, transferring them to the designated recovery account.
+
+# Knowledge requirement
+good understanding of ABI encoding specific
+good understanding of EVM calldata struct

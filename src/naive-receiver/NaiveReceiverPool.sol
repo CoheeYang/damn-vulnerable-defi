@@ -86,6 +86,13 @@ contract NaiveReceiverPool is Multicall, IERC3156FlashLender {
     function _msgSender() internal view override returns (address) {
         if (msg.sender == trustedForwarder && msg.data.length >= 20) {
             return address(bytes20(msg.data[msg.data.length - 20:]));
+            ///msg.data是函数选择器4位+每个参数32位
+            //在withdraw函数中，有两个参数，所以msg.data.length = 4 + 32 + 32 = 68
+            //本来msg.data[msg.data.length - 20:]预期上可以取数据的最后的20位，即第二个参数的地址，
+            //但是谁都可以最后在数据中再加上20位地址，所以这里是不安全的
+
+
+
         } else {
             return super._msgSender();
         }
